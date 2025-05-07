@@ -1,21 +1,817 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chef Noyon</title>
-  <link rel="icon"  href="./img/Untitled.png">
-  <link rel="stylesheet" href="./style.css">
+  <meta name="description"
+    content="Professional catering services by Chef Noyon for weddings, corporate events, and private parties in Bogura">
+  <title>Chef Noyon - Premium Catering Service</title>
+  <link rel="icon" href="./img/chef-logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #f26c1e;
+      --secondary: #a71d1d;
+      --light-bg: #f9f6f9;
+      --dark-text: #333;
+      --light-text: #fff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--light-bg);
+      color: var(--dark-text);
+      overflow-x: hidden;
+    }
+
+    /* Header Styles */
+    .header {
+      display: flex;
+      align-items: center;
+      height: 115px;
+      border-bottom: 1px solid #ddd;
+      justify-content: space-between;
+      background-color: rgba(250, 235, 215, 0.449);
+      padding: 0 2rem;
+    }
+
+    .logo {
+      text-align: center;
+      color: var(--primary);
+      display: flex;
+      cursor: default;
+      opacity: 0;
+      animation: slideright 1s ease forwards;
+    }
+
+    @keyframes slideright {
+      0% {
+        transform: translateX(-100px);
+        opacity: 0;
+      }
+
+      100% {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    .logo img {
+      height: 19vh;
+      width: auto;
+    }
+
+    .logo h1 {
+      font-size: 1.8rem;
+      letter-spacing: 0.1em;
+      font-weight: bold;
+      margin-top: 30px;
+      margin-left: 0px;
+      font-family: 'Forte', cursive;
+    }
+
+    .logo p {
+      font-size: 0.9rem;
+      letter-spacing: 0.25em;
+      margin-top: 5px;
+      font-family: 'Bradley Hand ITC', cursive;
+      color: var(--secondary);
+      font-weight: bold;
+    }
+
+    .nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: var(--dark-text);
+      font-weight: bold;
+      font-size: 0.95rem;
+      letter-spacing: 0.12em;
+      transition: color 0.3s;
+      opacity: 0;
+      animation: slideUp 1s ease-out forwards;
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(100%);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .nav a:hover {
+      color: var(--primary);
+      border-bottom: 2px solid var(--secondary);
+    }
+
+    /* Carousel Styles */
+    .carousel {
+      position: relative;
+      height: 80vh;
+      max-height: 800px;
+      overflow: hidden;
+    }
+
+    .slides {
+      height: 100%;
+      width: 100%;
+      position: relative;
+    }
+
+    .slide {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .slide::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.2);
+      pointer-events: none;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .slide.active {
+      opacity: 1;
+      z-index: 1;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      background-color: rgba(247, 248, 244, 0.9);
+      width: 80%;
+      max-width: 900px;
+      padding: 2rem;
+      text-align: center;
+      border: 2px groove;
+      border-radius: 16px;
+    }
+
+    .overlay h2 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      color: rgba(154, 3, 36, 0.825);
+      margin-bottom: 1rem;
+      font-family: 'Cooper Black', serif;
+    }
+
+    .overlay p {
+      font-size: clamp(1rem, 2vw, 1.5rem);
+      color: rgba(54, 14, 22, 0.9);
+      font-family: 'Baskerville Old Face', serif;
+      font-weight: bold;
+      margin-bottom: 2rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 25px;
+      background-color: var(--primary);
+      color: white;
+      font-size: 1.2rem;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: all 0.3s;
+      font-family: 'Cooper Black', serif;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: var(--secondary);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* About Section */
+    .about-container {
+      display: flex;
+      align-items: stretch;
+      gap: 15px;
+      margin: 4rem auto;
+      max-width: 1200px;
+    }
+
+    .left-content {
+      flex: 1;
+      padding: 2rem;
+      background: rgba(137, 133, 133, 0.4);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      border-radius: 15px 0 0 15px;
+    }
+
+    .left-content h1 {
+      font-size: clamp(1.5rem, 3vw, 2.7rem);
+      margin-bottom: 1rem;
+      font-family: 'Cooper Black', serif;
+      color: var(--secondary);
+    }
+
+    .divider {
+      width: 100px;
+      height: 3px;
+      background: goldenrod;
+      margin: 1rem auto 2rem;
+    }
+
+    .left-content h3 {
+      font-weight: normal;
+      margin-bottom: 1.5rem;
+      color: rgba(0, 0, 0, 0.75);
+    }
+
+    .left-content p {
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      color: rgba(0, 0, 0, 0.6);
+    }
+
+    .image-stack {
+      flex: 2;
+      display: flex;
+      gap: 15px;
+      height: 100%;
+    }
+
+    .left-content,
+    .image-stack {
+      height: 100%;
+    }
+
+    .image-stack div {
+      flex: 1;
+      height: 100%;
+      display: flex;
+    }
+
+    .image-stack img {
+      width: 100%;
+      height: 800px;
+      object-fit: cover;
+    }
 
 
+    .image-stack img:hover {
+      transform: scale(1.05);
+    }
+
+    .rimg {
+      border-radius: 0 15px 15px 0;
+    }
+
+    /* Dawat & Wedding Sections */
+    .dawat,
+    .weeding {
+      display: flex;
+      align-items: center;
+      margin: 6rem auto;
+      max-width: 1200px;
+      gap: 2rem;
+    }
+
+    .dawat img,
+    .weeding img {
+      flex: 1;
+      height: 70vh;
+      min-height: 400px;
+      object-fit: cover;
+      border-radius: 15px;
+    }
+
+    .dawat-content,
+    .weeding-content {
+      flex: 1;
+      padding: 2rem;
+    }
+
+    .dawat h1,
+    .weeding h1 {
+      font-family: 'Cooper Black', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .dawat p,
+    .weeding p {
+      font-size: clamp(1.2rem, 2vw, 1.8rem);
+      margin: 2rem 0;
+      font-family: 'Gabriola', cursive;
+      font-weight: bold;
+      line-height: 1.5;
+    }
+
+    /* Menu Section */
+    .menu-container {
+      padding: 4rem 2rem;
+      background-color: rgba(119, 119, 119, 0.1);
+      margin: 4rem auto;
+    }
+
+    .menu-tittle {
+      text-align: center;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      margin-bottom: 3rem;
+      color: rgba(154, 3, 36, 0.825);
+      font-family: 'Elephant', serif;
+    }
+
+    .food-menu {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .food-item {
+      position: relative;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      border-radius: 15px;
+      transition: all 0.3s ease;
+      background: white;
+    }
+
+    .food-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .food-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .food-info {
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .food-info h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: rgba(154, 3, 36, 0.825);
+    }
+
+    .food-info p {
+      font-size: 1rem;
+      color: #777;
+      line-height: 1.5;
+    }
+
+    /* Reviews Section */
+    .reviews-section {
+      padding: 4rem 2rem;
+      text-align: center;
+      background-color: rgba(242, 108, 30, 0.05);
+    }
+
+    .reviews-section h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      margin-bottom: 3rem;
+      color: var(--primary);
+      font-family: 'Cooper Black', serif;
+    }
+
+    .reviews {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .review-card {
+      background: rgba(242, 108, 30, 0.1);
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      padding: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .review-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      background: rgba(242, 108, 30, 0.15);
+    }
+
+    .review-card img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1rem;
+      border: 3px solid var(--primary);
+    }
+
+    .review-card h3 {
+      margin: 0.5rem 0;
+      font-size: 1.2rem;
+      color: var(--dark-text);
+    }
+
+    .stars {
+      color: #fbb034;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+
+    .review-card p {
+      font-size: 0.95rem;
+      color: #555;
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    /* Gallery Section */
+    .gallery-section {
+      padding: 4rem 2rem;
+      text-align: center;
+      background-color: rgba(167, 29, 29, 0.05);
+    }
+
+    .gallery-section h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      margin-bottom: 3rem;
+      color: var(--secondary);
+      font-family: 'Cooper Black', serif;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      aspect-ratio: 1/1;
+      transition: all 0.3s ease;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .caption {
+      position: absolute;
+      bottom: -100%;
+      left: 0;
+      width: 100%;
+      background: rgba(167, 29, 29, 0.8);
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      font-size: 1rem;
+      transition: bottom 0.4s ease;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .gallery-item:hover .caption {
+      bottom: 0;
+    }
+
+    /* Scrolling Heading */
+    .scrolling-heading {
+      overflow: hidden;
+      white-space: nowrap;
+      background: rgba(157, 122, 112, 0.5);
+      color: white;
+      font-size: clamp(1rem, 2vw, 1.5rem);
+      font-weight: bold;
+      padding: 1rem 0;
+      position: relative;
+      margin-top: 4rem;
+    }
+
+    .scrolling-heading span {
+      display: inline-block;
+      padding-left: 100%;
+      animation: scroll-left 20s linear infinite;
+    }
+
+    @keyframes scroll-left {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+
+    /* Footer Styles */
+    .footer {
+      background-color: rgba(167, 29, 29, 0.7);
+      color: white;
+      font-family: sans-serif;
+      padding-top: 3rem;
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .footer-column {
+      padding: 1rem;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-logo img {
+      height: 80px;
+      width: auto;
+    }
+
+    .footer-logo-text h1 {
+      font-size: 1.5rem;
+      font-family: 'Forte', cursive;
+      color: white;
+    }
+
+    .footer-logo-text p {
+      font-size: 0.8rem;
+      font-family: 'Bradley Hand ITC', cursive;
+      color: white;
+    }
+
+    .footer-column h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+      color: white;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    .footer-column h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background: white;
+    }
+
+    .footer-column ul {
+      list-style: none;
+    }
+
+    .footer-column li {
+      margin: 0.8rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .footer-column li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: white;
+    }
+
+    .footer-column p {
+      margin: 0.8rem 0;
+      line-height: 1.6;
+    }
+
+    .contact-info {
+      display: flex;
+      align-items: center;
+      margin: 0.8rem 0;
+    }
+
+    .contact-info i {
+      margin-right: 0.8rem;
+      color: white;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .social-icons a {
+      color: var(--secondary);
+      background: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding: 1.5rem;
+      margin-top: 2rem;
+      background-color: rgba(167, 29, 29, 0.9);
+      font-size: 0.9rem;
+    }
+
+    .footer-bottom strong {
+      color: white;
+    }
+
+    .footer-bottom span {
+      color: rgba(255, 251, 0, 0.8);
+    }
+
+    .go-top {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background-color: var(--primary);
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .go-top:hover {
+      background-color: var(--secondary);
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 1024px) {
+      .header {
+        flex-direction: column;
+        height: auto;
+        padding: 1rem;
+      }
+
+      .nav ul {
+        margin: 1rem 0;
+      }
+
+      .carousel {
+        height: 60vh;
+      }
+
+      .overlay {
+        width: 90%;
+        padding: 1.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+
+      .about-container,
+      .dawat,
+      .weeding {
+        flex-direction: column;
+      }
+
+      .image-stack {
+        flex-direction: column;
+        height: auto;
+      }
+
+      .rimg {
+        border-radius: 0 0 15px 15px;
+      }
+
+      .left-content {
+        border-radius: 15px 15px 0 0;
+      }
+
+      .dawat img,
+      .weeding img {
+        width: 100%;
+        border-radius: 15px 15px 0 0;
+      }
+
+      .dawat-content .btn,
+      .weeding-content .btn {
+        margin: 2rem auto 0;
+      }
+
+      .food-menu {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav ul {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .logo {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .logo h1 {
+        margin-top: 0.5rem;
+      }
+
+      .overlay h2 {
+        font-size: 1.8rem;
+      }
+
+      .overlay p {
+        font-size: 1rem;
+      }
+
+      .footer-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Reduced motion preference */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      .scrolling-heading span {
+        animation: none;
+        white-space: normal;
+        padding-left: 0;
+      }
+    }
+  </style>
 </head>
+
 <body>
   <header class="header">
     <div class="logo">
-       <div class="image"><img src="./img/Abstract_Illustrative_Chef_Restaurant_Logo-removebg-preview (1).png"></div> 
-      <div class=logo-cnt><h1>CHEF NOYON</h1>
-        <p>CATERING • SERVICE</p></div>
+      <div class="image"><img src="./img/Abstract_Illustrative_Chef_Restaurant_Logo-removebg-preview (1).png" alt="Chef Noyon Logo"></div>
+      <div class="logo-cnt">
+        <h1>CHEF NOYON</h1>
+        <p>CATERING • SERVICE</p>
+      </div>
     </div>
     <nav class="nav">
       <ul>
@@ -26,35 +822,36 @@
       </ul>
     </nav>
   </header>
-  <!-- carosel -->
-   
+
+  <!-- Carousel Section -->
   <section class="carousel">
     <div class="slides">
-      <div class="slide ">
-        <img src="./img/table2.jpg">
-      </div>
-      <div class="slide"> <img src="./img/a-successful-chef.jpg">
+      <div class="slide">
+        <img src="./img/table2.jpg" alt="Elegant dining table setup" loading="lazy">
       </div>
       <div class="slide">
-        <img src="./img/serve-food.jpg">
+        <img src="./img/chef-cooking.jpg" alt="Chef preparing food" loading="lazy">
+      </div>
+      <div class="slide">
+        <img src="./img/serve-food.jpg" alt="Waiter serving food" loading="lazy">
       </div>
       <div class="slide active">
-        <img src="./img/cook2.jpg">
+        <img src="./img/cook2.jpg" alt="Chef cooking" loading="lazy">
       </div>
     </div>
     <div class="overlay">
-      <h2>WE TAKE CARE <br> OF YOUR EVENT.</h2>
-      <p>While You Simply Cntertain Your Guests. Leaving All The Tasks Of Providing
-        The Very Best Of Food And Service To Us. That’s The chef noyon's Promise!</p>
-        <a href="#" class="btn">See More</a>
+      <h2>WE TAKE CARE OF YOUR EVENT.</h2>
+      <p>While You Simply Entertain Your Guests. Leaving All The Tasks Of Providing The Very Best Of Food And Service To
+        Us. That's The Chef Noyon's Promise!</p>
+      <a href="#services" class="btn">See More</a>
     </div>
   </section>
-  <script src="./home.js"></script>
 
-  <!-- about -->
+  <!-- About Section -->
   <div class="about-container">
     <div class="left-content">
-      <img src="https://salsabd.com/wp-content/uploads/2023/07/bbbq-free-img.png" class="icon">
+      <img src="https://salsabd.com/wp-content/uploads/2023/07/bbbq-free-img.png" alt="BBQ icon" class="icon"
+        loading="lazy">
       <h1>About service</h1>
       <div class="divider"></div>
       <h3>Our Delicious Story</h3>
@@ -63,217 +860,209 @@
         We work closely with our clients to produce memorable events that hosts can enjoy and
         participate in with their guests.
       </p>
-      <a href="#" class="btn">Learn more</a>
+      <a href="./about.html" class="btn">Learn more</a>
     </div>
-    
+
     <div class="image-stack">
       <div>
-        <img src="./img/ab1jpg.jpg">
+        <img src="./img/ab1jpg.jpg" alt="Catering setup" loading="lazy">
       </div>
       <div>
-        <img src="./img/ab2.jpg" >
+        <img src="./img/ab2.jpg" alt="Chef preparing food" loading="lazy">
       </div>
       <div>
-        <img src="./img/ab3.jpg" >
+        <img src="./img/ab3.jpg" alt="Event catering" loading="lazy">
       </div>
       <div>
-        <img src="./img/ab4.jpg" class="rimg">
+        <img src="./img/ab4.jpg" alt="Food presentation" class="rimg" loading="lazy">
       </div>
     </div>
   </div>
-<!-- dawat -->
-</div>
-<div class="dawat">
- <img src="./img/dawat.jpg">
-<div class="dawat-content"><h1>Hosting A dawat? call us</h1> <p>From house parties to birthdays and other celebrations, we provide catering service for intimate programs every day.</p> <a href="#" class="btn">Learn more</a></div> 
-</div>
-<!-- weeding -->
-</div>
-<div class="weeding">
 
-<div class="weeding-content"><h1>we also make weddings unforgettable</h1> <p>Your special day becomes even more memorable for your guests when they experience the very best of catering service Dhaka has to offer.</p> <a href="#" class="btn">Learn more</a></div> 
+  <!-- Dawat Section -->
+  <div class="dawat">
+    <img src="./img/dawat.jpg" alt="Traditional Dawat setup" loading="lazy">
+    <div class="dawat-content">
+      <h1>Hosting A Dawat? call us</h1>
+      <p>From house parties to birthdays and other celebrations, we provide catering service for intimate programs every
+        day.</p>
+      <a href="./contact.html" class="btn">Learn more</a>
+    </div>
+  </div>
 
-<img src="./img/wedding.jpg">
-</div>
+  <!-- Wedding Section -->
+  <div class="weeding">
+    <div class="weeding-content">
+      <h1>We also make weddings unforgettable</h1>
+      <p>Your special day becomes even more memorable for your guests when they experience the very best of catering
+        service Dhaka has to offer.</p>
+      <a href="./contact.html" class="btn">Learn more</a>
+    </div>
+    <img src="./img/wedding.jpg" alt="Wedding catering setup" loading="lazy">
+  </div>
 
-
- <!--menu section-->
-
-<div class="menu-container">
-  <h1 class="menu-tittle">OUR OFFERINGS</h1>
-  <div class="food-menu">
-  
+  <!-- Menu Section -->
+  <div class="menu-container" id="services">
+    <h1 class="menu-tittle">OUR OFFERINGS</h1>
+    <div class="food-menu">
       <div class="food-item">
-          <img src="./img/cooking.jpg">
-           <div class="food-info">
-              <h3>Food Processing</h3>
-              
-              <p>
-                   Deshi, Indian, Chinese or Continental cuisine, we have a rich selection  items .</p>
-           </div>
+        <img src="./img/cooking.jpg" alt="Food processing" loading="lazy">
+        <div class="food-info">
+          <h3>Food Processing</h3>
+          <p>Deshi, Indian, Chinese or Continental cuisine, we have a rich selection of items.</p>
+        </div>
       </div>
-  <div class="food-item">
-      <img src="./img/serve-food.jpg">
-       <div class="food-info">
+      <div class="food-item">
+        <img src="./img/serve-food.jpg" alt="Catering service" loading="lazy">
+        <div class="food-info">
           <h3>Catering Service</h3>
-          
           <p>400+ items. Across 6 different cuisines. but we have served up to 5,000 a day.</p>
-       </div>
-  </div>
-  <div class="food-item">
-      <img src="./img/table2.jpg">
-       <div class="food-info">
+        </div>
+      </div>
+      <div class="food-item">
+        <img src="./img/table2.jpg" alt="Decorator service" loading="lazy">
+        <div class="food-info">
           <h3>Decorator Service</h3>
-          
-          <p>Expert servers, chafing dishes, crockery, cutlery, tables, chairs and anything else </p>
-       </div>
-  </div>
-  <div class="food-item">
-      <img src="./img/event.avif">
-       <div class="food-info">
+          <p>Expert servers, chafing dishes, crockery, cutlery, tables, chairs and anything else</p>
+        </div>
+      </div>
+      <div class="food-item">
+        <img src="./img/event.avif" alt="Event management" loading="lazy">
+        <div class="food-info">
           <h3>Event Management</h3>
-          
-          <p>Entry-gate, stage, walkway, lights, sound system, music artists, stunning decor etc.
-  
-          </p>
-       </div>
+          <p>Entry-gate, stage, walkway, lights, sound system, music artists, stunning decor etc.</p>
+        </div>
+      </div>
+    </div>
   </div>
-  
-  </div>
-  <!-- review -->
+
+  <!-- Reviews Section -->
   <section class="reviews-section">
     <h2>WHAT PEOPLE ARE SAYING</h2>
     <div class="reviews">
-      
       <div class="review-card">
-        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Customer Photo">
+        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Zara Smith" loading="lazy">
         <h3>Zara Smith</h3>
         <div class="stars">★★★★★</div>
         <p>
           The food was incredible and beautifully presented. Our guests are still talking about it!
         </p>
       </div>
-
       <div class="review-card">
-        <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Customer Photo">
+        <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Naiyaan Noor" loading="lazy">
         <h3>Naiyaan Noor</h3>
         <div class="stars">★★★★☆</div>
         <p>
           Excellent service and attention to detail. Will definitely hire them again for our next event.
         </p>
       </div>
-
       <div class="review-card">
-        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Customer Photo">
+        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Priya Das" loading="lazy">
         <h3>Priya Das</h3>
         <div class="stars">★★★★★</div>
         <p>
           The menu was creative and flavorful! Truly a five-star catering experience.
         </p>
       </div>
-
     </div>
   </section>
 
- 
-  <!-- gellery  -->
-  
+  <!-- Gallery Section -->
   <section class="gallery-section">
     <h2>FOOD MENU</h2>
     <div class="gallery-grid">
-      <!-- 12 gallery items -->
       <div class="gallery-item">
-        <img src="https://salsabd.com/wp-content/uploads/2023/06/beef-kacchi-biriyani-full-chinigura-1-1-300x300.jpg">
-        <div class="caption">Beef kacchi Biriyani (Full, Chinigura)<br>
-          ৳ 385.00</div>
+        <img src="https://salsabd.com/wp-content/uploads/2023/06/beef-kacchi-biriyani-full-chinigura-1-1-300x300.jpg"
+          alt="Beef Kacchi Biriyani" loading="lazy">
+        <div class="caption">Beef kacchi Biriyani (Full, Chinigura)<br>৳ 385.00</div>
       </div>
       <div class="gallery-item">
-        <img src="https://salsabd.com/wp-content/uploads/2023/06/beef-kala-bhuna-1-300x300.jpg">
-        <div class="caption">Beef Kala Vhuna <br>
-          ৳ 350.00</div>
+        <img src="https://salsabd.com/wp-content/uploads/2023/06/beef-kala-bhuna-1-300x300.jpg" alt="Beef Kala Bhuna"
+          loading="lazy">
+        <div class="caption">Beef Kala Bhuna <br>৳ 350.00</div>
       </div>
       <div class="gallery-item">
-        <img src="https://salsabd.com/wp-content/uploads/2023/06/Beef-Biriyani-%E2%80%93-Full-Chinigura-Beef-2-pcs-300x300.jpg">
-        <div class="caption">Beef Tehari – Full (Chinigura)<br>
-          ৳ 340.00</div>
+        <img
+          src="https://salsabd.com/wp-content/uploads/2023/06/Beef-Biriyani-%E2%80%93-Full-Chinigura-Beef-2-pcs-300x300.jpg"
+          alt="Beef Tehari" loading="lazy">
+        <div class="caption">Beef Tehari – Full (Chinigura)<br>৳ 340.00</div>
       </div>
       <div class="gallery-item">
-        <img src="https://salsabd.com/wp-content/uploads/2023/06/bbq-chicken-glazed-with-sauce-1-1-300x300.jpg">
-        <div class="caption">BBQ Chicken glazed with sauce<br>
-          ৳ 300.00</div>
+        <img src="https://salsabd.com/wp-content/uploads/2023/06/bbq-chicken-glazed-with-sauce-1-1-300x300.jpg"
+          alt="BBQ Chicken" loading="lazy">
+        <div class="caption">BBQ Chicken glazed with sauce<br>৳ 300.00</div>
       </div>
       <div class="gallery-item">
-        <img src="https://salsabd.com/wp-content/uploads/2023/06/bangla-mixed-vegetable-1-1-300x300.jpg">
-        <div class="caption">Bangla Mixed Vegetable <br>
-          ৳ 65.00</div>
+        <img src="https://salsabd.com/wp-content/uploads/2023/06/bangla-mixed-vegetable-1-1-300x300.jpg"
+          alt="Bangla Mixed Vegetable" loading="lazy">
+        <div class="caption">Bangla Mixed Vegetable <br>৳ 65.00</div>
       </div>
       <div class="gallery-item">
-        <img src="https://salsabd.com/wp-content/uploads/2023/06/chicken-club-sandwich-scaled-1-1-300x300.jpeg">
-        <div class="caption">Chicken Club Sandwich<br>
-          ৳ 120.00</div>
+        <img src="https://salsabd.com/wp-content/uploads/2023/06/chicken-club-sandwich-scaled-1-1-300x300.jpeg"
+          alt="Chicken Club Sandwich" loading="lazy">
+        <div class="caption">Chicken Club Sandwich<br>৳ 120.00</div>
       </div>
       <div class="gallery-item">
-        <img src="https://salsabd.com/wp-content/uploads/2023/06/chicken-corn-soup-300x300.jpg">
-        <div class="caption">Chicken Corn Soup <br>
-          ৳ 170.00</div>
+        <img src="https://salsabd.com/wp-content/uploads/2023/06/chicken-corn-soup-300x300.jpg" alt="Chicken Corn Soup"
+          loading="lazy">
+        <div class="caption">Chicken Corn Soup <br>৳ 170.00</div>
       </div>
       <div class="gallery-item">
-        <img src="https://salsabd.com/wp-content/uploads/2023/06/chicken-meat-ball-with-bbq-sauce-4-pcs-1-1-300x300.jpg">
-        <div class="caption">Chicken Meat Ball with BBQ sauce <br>
-          ৳ 300.00</div>
+        <img src="https://salsabd.com/wp-content/uploads/2023/06/chicken-meat-ball-with-bbq-sauce-4-pcs-1-1-300x300.jpg"
+          alt="Chicken Meat Ball" loading="lazy">
+        <div class="caption">Chicken Meat Ball with BBQ sauce <br>৳ 300.00</div>
       </div>
       <div class="gallery-item">
-        <img src="https://salsabd.com/wp-content/uploads/2023/06/chicken-pudina-kabab-boneless-1-300x300.jpg">
-        <div class="caption">Chicken Pudina Kabab (Boneless) <br>
-          ৳ 250.00</div>
+        <img src="https://salsabd.com/wp-content/uploads/2023/06/chicken-pudina-kabab-boneless-1-300x300.jpg"
+          alt="Chicken Pudina Kabab" loading="lazy">
+        <div class="caption">Chicken Pudina Kabab (Boneless) <br>৳ 250.00</div>
       </div>
       <div class="gallery-item">
-        <img src="https://salsabd.com/wp-content/uploads/2023/06/fresh-ring-salad-1-1-300x300.jpeg">
-        <div class="caption">Fresh Ring Salad With Poly (Cucumber,Lemon,Green Chilli)<br>
-          ৳ 50.00</div>
+        <img src="https://salsabd.com/wp-content/uploads/2023/06/fresh-ring-salad-1-1-300x300.jpeg"
+          alt="Fresh Ring Salad" loading="lazy">
+        <div class="caption">Fresh Ring Salad With Poly (Cucumber,Lemon,Green Chilli)<br>৳ 50.00</div>
       </div>
       <div class="gallery-item">
-        <img src="https://salsabd.com/wp-content/uploads/2023/06/hilsha-curry-1-pc-300x300.jpg">
-        <div class="caption">Hilsha Curry <br>
-          ৳ 220.00</div>
+        <img src="https://salsabd.com/wp-content/uploads/2023/06/hilsha-curry-1-pc-300x300.jpg" alt="Hilsha Curry"
+          loading="lazy">
+        <div class="caption">Hilsha Curry <br>৳ 220.00</div>
       </div>
       <div class="gallery-item">
-        <img src="https://salsabd.com/wp-content/uploads/2023/06/mango-lassi-seasonal-250-ml-300x300.jpg">
-        <div class="caption">Mango Lassi (Seasonal)<br>
-          ৳ 220.00</div>
+        <img src="https://salsabd.com/wp-content/uploads/2023/06/mango-lassi-seasonal-250-ml-300x300.jpg"
+          alt="Mango Lassi" loading="lazy">
+        <div class="caption">Mango Lassi (Seasonal)<br>৳ 220.00</div>
       </div>
     </div>
   </section>
 
-  <!-- heading -->
+  <!-- Scrolling Heading -->
   <div class="scrolling-heading">
-    <span>Wedding Event | Birthday Party | House Warming | Corporate Event | Engagement | Retirement Function | Annaprasanna|Mehendi Function|
-    </span>
+    <span>Wedding Event | Birthday Party | House Warming | Corporate Event | Engagement | Retirement Function |
+      Annaprasanna | Mehendi Function |</span>
   </div>
-  <!-- footer -->
 
+  <!-- Footer -->
   <footer class="footer">
     <div class="footer-container">
-      
-      <!-- Logo & Description -->
       <div class="footer-column">
-        <div class="footer-logo">
-         <div class="logo"><div class="image"><img src="./img/Abstract_Illustrative_Chef_Restaurant_Logo-removebg-preview (1).png"></div> 
-         <div class=logo-cnt><h1>CHEF NOYON</h1>
-           <p>CATERING • SERVICE</p></div></div> 
-       </div>
-        <p>Let noyon;s Catering transform your special occasion into a masterpiece with our professional touch.</p>
+            <div class="logo">
+      <div class="image"><img src="./img/Abstract_Illustrative_Chef_Restaurant_Logo-removebg-preview (1).png" alt="Chef Noyon Logo"></div>
+      <div class="logo-cnt">
+        <h1>CHEF NOYON</h1>
+        <p>CATERING • SERVICE</p>
+      </div>
+    </div>
+        <p>Let Chef Noyon's Catering transform your special occasion into a masterpiece with our professional touch.</p>
         <div class="social-icons">
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-youtube"></i></a>
-          <a href="#"><i class="fab fa-whatsapp"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
         </div>
       </div>
-  
-      <!-- Services -->
+
       <div class="footer-column">
-       <h3>OUR SERVICES</h3>
+        <h3>OUR SERVICES</h3>
         <ul>
           <li>Wedding Event</li>
           <li>Haldi Event</li>
@@ -283,33 +1072,35 @@
           <li>Seemantham</li>
         </ul>
       </div>
-  
+
       <div class="footer-column">
         <h3>HOURS</h3>
         <p>
-          open everyday
-          <br>
-          10Am-10Pm
+          Open everyday<br>
+          10:00 AM - 10:00 PM
         </p>
       </div>
-  
-      <!-- Contact Info -->
+
       <div class="footer-column">
         <h3>CONTACT NOW</h3>
-        <p><i class="fas fa-map-marker-alt"></i>Silimpur,Bogura Sadar,Bogura</p>
-        <p><i class="fas fa-phone-alt"></i>01892357964
-        | 01306512256</p>
-        <p><i class="fas fa-envelope"></i> mdmaksan964@gmail.com</p>
+        <div class="contact-info">
+          <i class="fas fa-map-marker-alt"></i>
+          <p>Silimpur, Bogura Sadar, Bogura</p>
+        </div>
+        <div class="contact-info">
+          <i class="fas fa-phone-alt"></i>
+          <p>+880 1234 567890</p>
+        </div>
+        <div class="contact-info">
+          <i class="fas fa-envelope"></i>
+          <p>info@chefnoyon.com</p>
+        </div>
       </div>
     </div>
-  
-    <!-- Bottom -->
     <div class="footer-bottom">
-      <p>© 2025 <strong>Chef Noyon's Catering service</strong> All rights reserved | Designed By <span>Noyonhasan</span>.</p>
-      <a href="#" class="go-top"><p>Go to Top ↑</p></a>
+      <p>&copy; 2025 Chef Noyon Catering. All rights reserved.</p>
     </div>
   </footer>
-  
-
 </body>
+
 </html>
