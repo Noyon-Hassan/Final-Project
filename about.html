@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About Us</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: rgba(250, 235, 215, 0.449);
+      color: #003920;
+    }
+    .header {
+    display: flex;
+    align-items: center;
+    height: 115px;
+    border-bottom: 1px solid #ddd;
+    justify-content: space-between;
+    background-color: rgba(250, 235, 215, 0.449);
+  }
+  
+  .logo {
+    text-align: center;
+    color: #f26c1e;
+    display: flex;
+    cursor: default;
+    opacity: 0;
+    animation:slideright 1s ease forwards;
+    
+    
+  }
+  @keyframes slideright{
+    0%{
+        transform:translateX(-100px);
+        opacity: 0;
+    }
+    100%{
+        transform:translateX(0px);
+        opacity: 1;
+    }
+  }
+  .logo-cnt{
+    line-height: 14px;
+    margin-top: 16px;
+  }
+  .image{
+    width: 105px;
+
+
+  }
+  .logo img{
+    height:19vh;
+   
+  }
+ 
+  
+  
+  .logo h1 {
+    font-size: 1.8rem;
+    letter-spacing: 0.1em;
+    font-weight: bold;
+    margin-top:30px ;
+    margin-left: 0px;
+    font-family: Forte;
+    gap: 5px;
+  }
+  
+  .logo p {
+    font-size: 0.9rem;
+    font-style: bold;
+    letter-spacing: 0.25em;
+    font-family: Bradley Hand ITC;
+    color: #a71d1d;
+    font-weight: bold;
+    gap:2px;
+    
+  }
+  
+  .nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-right: 30px;
+    gap: 30px;
+    
+  }
+  
+  .nav a {
+    text-decoration: none;
+    color: #333333bb;
+    font-weight:bold;
+    font-style: bold;
+    font-size: 0.95rem;
+    letter-spacing: 0.12em;
+    transition: .3s;
+    opacity: 0;
+    animation: slideUp 1s ease-out forwards;
+   
+  }
+  @keyframes slideUp {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  .nav a:hover {
+    color: #f26c1e;
+    border-bottom: 2px solid #a71d1dc3;
+   
+    
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
+    .nav ul {
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+
+    .about-section {
+      padding: 0px 0px;
+      max-width: 1580px;
+      margin-top: 40px;
+      
+    
+    }
+
+    .about-title {
+      text-align: center;
+      font-size: 46px;
+      font-weight: bold;
+      margin-bottom: 40px;
+      font-family: cooper black;
+      color:#f26c1ec2;
+    }
+
+   
+  
+
+    .team-section {
+      
+      background-color: #a71d1d06;
+      padding: 30px;
+    
+    }
+
+    .team-title {
+      text-align: center;
+      font-size: 40px;
+      font-weight: bold;
+      margin-bottom: 30px;
+      font-family: cooper black;
+      color: #a71d1dde;
+    }
+
+    .team-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .team-member {
+      background-color:#a71d1d1b;
+      border-radius: 10px;
+      padding: 20px;
+      width: 280px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      font-family: elephant;
+    }
+
+    .team-member:hover {
+      transform: translateY(-5px);
+    }
+
+    .team-member img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .team-member h3 {
+      font-size: 22px;
+      margin-bottom: 5px;
+      font-family: copper black;
+      color: #d12222cd;
+    }
+
+    .designation {
+      font-style: italic;
+      font-size: 15px;
+      color:#e77938dd;
+      margin-bottom: 10px;
+    }
+
+    .team-member p {
+      font-size: 14px;
+      color: #555;
+    }
+    /* banner */
+    
+    .about-banner {
+      position: relative;
+      background-image: url('/img/cooking.jpg');
+      background-size: cover;
+      background-position: center;
+      height: 900px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .about-banner::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.552); /* black shade overlay */
+      z-index: 1;
+    }
+
+    .banner-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 20px;
+      font-family: cooper black;
+      background-color: #dddddd6c;
+      height: 450px;
+      border: 2px solid grey;
+      border-radius: 15px 0 15px 0;
+    }
+
+    .banner-content h1 {
+      font-size: 50px;
+     
+      color: #a71d1dc2;
+    }
+
+    .banner-content p {
+      font-size: 25px;
+      max-width: 770px;
+      margin: auto;
+      font-family: copper black;
+      color:#faf7f7;
+      line-height:2.2rem;
+    }
+
+    .about-details {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 0 20px;
+      font-size: 18px;
+      line-height: 1.8;
+      color: #333;
+    }
+
+    .about-details h2 {
+      font-size: 30px;
+      margin-bottom: 20px;
+      color: #00714a;
+    }
+
+    @media (max-width: 768px) {
+      .banner-content h1 {
+        font-size: 32px;
+      }
+
+      .about-details {
+        font-size: 16px;
+      }
+    }
+
+
+    .chef-section {
+  padding: 60px 15px;
+  background:rgba(0, 0, 0, 0.163);
+  text-align: center;
+  border-radius: 15px;
+}
+
+.section-title {
+  font-size: 2.5em;
+  margin-bottom: 40px;
+  color: #f26c1e;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: cooper black;
+}
+
+.chef-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  max-width: 1300px;
+  margin: 0 auto;
+
+}
+
+.chef-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+  height: 350px; /* fixed height */
+}
+
+.chef-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* ensures image fills card while maintaining aspect ratio */
+  display: block;
+  border-radius: 15px;
+  transition: transform 0.3s ease;
+}
+
+.chef-card:hover img {
+  transform: scale(1.1);
+}
+
+.chef-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #f26c1e61;
+  color: white;
+  padding: 20px;
+  transform: translateY(100%);
+  transition: transform 0.4s ease;
+  text-align: left;
+}
+
+.chef-card:hover .chef-info {
+  transform: translateY(0);
+}
+
+.chef-info h3 {
+  margin: 0 0 10px;
+  font-size: 1.4em;
+  font-weight: bold;
+  font-family: cooper black;
+}
+
+.chef-info p {
+  font-size: 0.95em;
+  line-height: 1.5;
+}
+
+    /* chef end */
+    /* footer */
+    .footer {
+  background-color:rgba(128, 128, 128, 0.668);
+  color: #fff;
+  font-family: sans-serif;
+  background-image: url('pattern.png'); /* optional bg pattern */
+  background-size: contain;
+  
+  height: 418px;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  margin: auto;
+  gap: 10px;
+ 
+}
+
+.footer-column {
+  flex: 1 1 220px;
+  min-width: 250px;
+  margin: 50px;
+}
+
+.footer-logo {
+  height: 150px;
+  width:350px ;
+  background-color: rgba(244, 242, 239, 0.792) ;
+  margin-left: 0px;
+}
+
+.footer-column h3 {
+  font-size: 20px;
+  margin-bottom: 15px;
+  font-weight: bold;
+  color: #f26c1ecf;
+  font-size: 25px;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column li {
+  margin: 8px 0;
+  position: relative;
+  padding-left: 18px;
+  font-weight: bold;
+}
+
+.footer-column li::before {
+  content: '➜';
+  position: absolute;
+  left: 0;
+  color: #999;
+}
+
+.footer-column p {
+  margin: 10px 0;
+  line-height: 1.6;
+  font-weight: bold;
+}
+
+.footer-column i {
+  color: #9d7a70;
+  margin-right: 8px;
+}
+
+.social-icons a {
+  margin-right: 10px;
+  color: rgba(16, 6, 6, 0.86);
+  font-size: 20px;
+  background:white;
+  padding: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background 0.3s;
+}
+
+.social-icons a:hover {
+  background: #d2dd85;
+}
+
+.footer-bottom {
+  border-top: 1px solid #333;
+  margin-top: 30px;
+  padding-top: 15px;
+  text-align: center;
+  font-size: 14px;
+  color: #ccc;
+  background-color:grey;
+ 
+ 
+}
+
+.footer-bottom strong {
+  color: #915757;
+}
+
+.footer-bottom span {
+  color: rgba(255, 251, 0, 0.753);
+}
+
+.go-top {
+  display: inline-block;
+  margin-top: 10px;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  background-color: rgb(27, 91, 27);
+  height: 30px;
+  width: 90px;
+}
+.go-top p{
+  font-family: elephant;
+  margin-top:5px ;
+}
+
+.go-top:hover {
+  background-color: #a71d1d;
+}
+  </style>
+</head>
+<body><header class="header">
+    <div class="logo">
+       <div class="image"><img src="./img/Abstract_Illustrative_Chef_Restaurant_Logo-removebg-preview (1).png"></div> 
+      <div class=logo-cnt><h1>CHEF NOYON</h1>
+        <p>CATERING • SERVICE</p></div>
+    </div>
+    <nav class="nav">
+      <ul>
+        <li><a href="./index.html">HOME</a></li>
+        <li><a href="./about.html">ABOUT US</a></li>
+        <li><a href="./contact.html">CONTACT</a></li>
+        <li><a href="./faq.html">FAQ</a></li>
+      </ul>
+    </nav>
+  </header>
+<!-- nav end -->
+  <!-- Banner Section -->
+  <section class="about-banner">
+    <div class="banner-content">
+      <h1>WELCOME TO NOYON'S </h1>
+      <p>Noyon’s Catering is where flavor meets passion. Discover our story and how we bring taste to every event.With over 20 years of catering experience, Noyon's Catering is a leading caterer that provides customers with top quality food and services. Our extensive and innovative menus are competitively priced and tailored to suit a diverse group of household and corporate customers. We take special care to ensure your event needs are met with our proven track record, having catered for major events. </p>
+    </div>
+  </section>
+
+ 
+   
+
+  </section>
+
+ <!-- banner end -->
+  <section class="about-section">
+   
+
+   
+
+    <!-- Chefs Section -->
+    <section class="chef-section">
+        <h2 class="section-title">Our Chefs</h2>
+        <div class="chef-container">
+          <div class="chef-card">
+            <img src="./img/1.webp" alt="Chef Noyon">
+            <div class="chef-info">
+              <h3>Chef Noyon</h3>
+              <p>Head Chef — 15+ years of culinary mastery in Bengali and fusion cuisine.</p>
+            </div>
+          </div>
+          <div class="chef-card">
+            <img src="./img/cfg.avif" alt="Chef Amina">
+            <div class="chef-info">
+              <h3>Chef Amina</h3>
+              <p>Pastry Chef — Expert in cakes, sweets, and elegant desserts.</p>
+            </div>
+          </div>
+          <div class="chef-card">
+            <img src="./img/cf3.avif" alt="Chef Rahul">
+            <div class="chef-info">
+              <h3>Chef Rahul</h3>
+              <p>Grill Specialist — Known for BBQ, meats, and tandoor delicacies.</p>
+            </div>
+          </div>
+          <div class="chef-card">
+            <img src="./img/cf4.avif" alt="Chef Farzana">
+            <div class="chef-info">
+              <h3>Chef Farzana</h3>
+              <p>Vegetarian Expert — Focused on healthy and balanced plant-based meals.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+
+    <!-- Staff Section -->
+    <div class="team-section">
+      <h2 class="team-title">Our Staff</h2>
+      <div class="team-grid">
+        <div class="team-member">
+          <img src="./img/sf1.jpg" alt="John Doe">
+          <h3>John Doe</h3>
+          <div class="designation">Service Manager</div>
+          <p>Ensures smooth event flow and customer satisfaction at all stages.</p>
+        </div>
+        <div class="team-member">
+          <img src="./img/sf2.avif">
+          <h3>Emily Clark</h3>
+          <div class="designation">Event Coordinator</div>
+          <p>Plans and coordinates event setups and ensures timely execution.</p>
+        </div>
+        <div class="team-member">
+          <img src="./img/sf3.avif" alt="Jake Lee">
+          <h3>Jake Lee</h3>
+          <div class="designation">Wait Staff</div>
+          <p>Delivers professional and friendly table service at every event.</p>
+        </div>
+        <div class="team-member">
+          <img src="./img/sf4.avif" alt="Sara Ng">
+          <h3>Sara Ng</h3>
+          <div class="designation">Hostess</div>
+          <p>Greets guests and ensures a warm, welcoming atmosphere.</p>
+        </div>
+        <div class="team-member">
+          <img src="./img/sf6.jpg" alt="David Kim">
+          <h3>David Kim</h3>
+          <div class="designation">Kitchen Assistant</div>
+          <p>Supports chefs with preparation and kitchen management.</p>
+        </div>
+        <div class="team-member">
+          <img src="./img/sf10.avif" alt="Rita Jones">
+          <h3>Rita Jones</h3>
+          <div class="designation">Bartender</div>
+          <p>Mixes custom drinks and manages the beverage service.</p>
+        </div>
+        <div class="team-member">
+          <img src="./img/sf12.jpg" alt="Tom Roy">
+          <h3>Tom Roy</h3>
+          <div class="designation">Logistics Coordinator</div>
+          <p>Manages supplies, transportation, and timely setup of equipment.</p>
+        </div>
+        <div class="team-member">
+          <img src="./img/sf11.avif" alt="Laura White">
+          <h3>Laura White</h3>
+          <div class="designation">Clean-Up Crew</div>
+          <p>Ensures spotless venues post-event with quick and efficient cleanup.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      
+      <!-- Logo & Description -->
+      <div class="footer-column">
+        <div class="footer-logo">
+         <div class="logo"><div class="image"><img src="./img/Abstract_Illustrative_Chef_Restaurant_Logo-removebg-preview (1).png"></div> 
+         <div class=logo-cnt><h1>CHEF NOYON</h1>
+           <p>CATERING • SERVICE</p></div></div> 
+       </div>
+        <p>Let noyon;s Catering transform your special occasion into a masterpiece with our professional touch.</p>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+          <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+  
+      <!-- Services -->
+      <div class="footer-column">
+        <h3>Our Services</h3>
+        <ul>
+          <li>Wedding Event</li>
+          <li>60th Wedding Event</li>
+          <li>70th Wedding Event</li>
+          <li>80th Wedding Event</li>
+          <li>Engagement</li>
+          <li>Seemantham</li>
+        </ul>
+      </div>
+  
+      <div class="footer-column">
+        <ul style="margin-top: 43px;">
+          <li>Annaprasana</li>
+          <li>Birthday Party</li>
+          <li>House Warming</li>
+          <li>Mehndi Function</li>
+          <li>Corporate Events</li>
+          <li>Retirement Function</li>
+        </ul>
+      </div>
+  
+      <!-- Contact Info -->
+      <div class="footer-column">
+        <h3>Contact Now</h3>
+        <p><i class="fas fa-map-marker-alt"></i>Silimpur,Bogura Sadar,Bogura</p>
+        <p><i class="fas fa-phone-alt"></i>01892357964
+        | 01306512256</p>
+        <p><i class="fas fa-envelope"></i> mdmaksan964@gmail.com</p>
+      </div>
+    </div>
+  
+    <!-- Bottom -->
+    <div class="footer-bottom">
+      <p>© 2025 <strong>Chef Noyon's Catering service</strong> All rights reserved | Designed By <span>Noyonhasan</span>.</p>
+      <a href="#" class="go-top"><p>Go to Top ↑</p></a>
+    </div>
+  </footer>
+  
+</body>
+</html>
+

@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact us</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Helvetica Neue', sans-serif;
+    background-color: #f9f6f9;
+    color:  rgba(250, 235, 215, 0.449);
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    height: 115px;
+    border-bottom: 1px solid #ddd;
+    justify-content: space-between;
+    background-color: rgba(250, 235, 215, 0.449);
+  }
+  
+  .logo {
+    text-align: center;
+    color: #f26c1e;
+    display: flex;
+    cursor: default;
+    opacity: 0;
+    animation:slideright 1s ease forwards;
+    
+  }
+  @keyframes slideright{
+    0%{
+        transform:translateX(-100px);
+        opacity: 0;
+    }
+    100%{
+        transform:translateX(0px);
+        opacity: 1;
+    }
+  }
+  .image{
+    width: 105px;
+
+
+  }
+  .logo img{
+    height:19vh;
+   
+  }
+ 
+  
+  
+  .logo h1 {
+    font-size: 1.8rem;
+    letter-spacing: 0.1em;
+    font-weight: bold;
+    margin-top:30px ;
+    margin-left: 0px;
+    font-family: Forte;
+  }
+  
+  .logo p {
+    font-size: 0.9rem;
+    font-style: bold;
+    letter-spacing: 0.25em;
+    margin-top: 5px;
+    font-family: Bradley Hand ITC;
+    color: #a71d1d;
+    font-weight: bold;
+  }
+  
+  .nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-right: 30px;
+    gap: 30px;
+    
+  }
+  
+  .nav a {
+    text-decoration: none;
+    color: #333333bb;
+    font-weight:bold;
+    font-style: bold;
+    font-size: 0.95rem;
+    letter-spacing: 0.12em;
+    transition: .3s;
+    opacity: 0;
+    animation: slideUp 1s ease-out forwards;
+   
+  }
+  @keyframes slideUp {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  .nav a:hover {
+    color: #f26c1e;
+    border-bottom: 2px solid #a71d1dc3;
+   
+    
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
+    .nav ul {
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+  .banner {
+  position: relative;
+  height: 700px;
+  background-image: url('./img/contact.jpg'); /* replace with your banner image */
+  background-size: cover;
+  background-position: center;
+}
+
+.banner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-colorrgba(0, 0, 0, 0.5); /* black overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.banner-content {
+  color: white;
+  text-align: center;
+  max-width: 900px;
+  padding: 20px;
+  background-color: #f26c1e27;
+  height: 400px;
+  margin-top: 200px;
+  border-radius: 15px;
+}
+
+.banner-content h1 {
+  font-size: 48px;
+  margin-top: 150px;
+  font-family: cooper black;
+  width: 900px;
+}
+
+.banner-content p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* contact */
+.contact-section {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: rgba(250, 235, 215, 0.449);
+  padding: 40px;
+  font-family: Arial, sans-serif;
+  height: 600px;
+}
+
+.contact-info {
+  flex: 1;
+  min-width: 250px;
+  padding: 20px;
+}
+
+.contact-info h2 {
+  margin-bottom: 20px;
+  font-size: 32px;
+  color: rgba(0, 0, 0, 0.621);
+  font-family: cooper black;
+}
+
+.contact-info ul {
+  list-style: none;
+  padding: 0;
+  color: #f26c1ebc;
+}
+
+.contact-info li {
+  margin-bottom: 15px;
+  font-size: 16px;
+  
+}
+
+.contact-info i {
+  margin-right: 10px;
+  color: #f26c1ecc;
+}
+
+.contact-info a {
+  color:rgba(0, 0, 0, 0.549);
+  text-decoration: none;
+}
+.contact-info p{
+    color:#a71d1db2;
+    font-family: cooper black;
+}
+
+.contact-form {
+  flex: 2;
+  min-width: 200px;
+  background-color:rgba(128, 128, 128, 0.188);
+  padding: 30px;
+  border-radius: 8px;
+}
+
+.contact-form h3 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: rgba(0, 0, 0, 0.54);
+  font-family: copper black;
+}
+
+.form-group {
+  display: flex;
+  gap: 25px;
+  margin-bottom: 25px;
+}
+
+.form-group input {
+  flex: 1;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+textarea {
+  width: 100%;
+  height: 120px;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+.contact-form p a {
+  color: #a71d1dc8;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.contact-form button {
+  background-color:#f26c1e;
+  color: white;
+  padding: 12px 24px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.contact-form button:hover {
+  background-color: #005f47;
+}
+
+/* footer */
+.footer {
+  background-color:rgba(128, 128, 128, 0.668);
+  color: #fff;
+  font-family: sans-serif;
+  background-image: url('pattern.png'); /* optional bg pattern */
+  background-size: contain;
+  
+  height: 418px;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  margin: auto;
+  gap: 10px;
+ 
+}
+
+.footer-column {
+  flex: 1 1 220px;
+  min-width: 250px;
+  margin: 50px;
+}
+
+.footer-logo {
+  height: 150px;
+  width:350px ;
+  background-color: rgba(244, 242, 239, 0.792) ;
+  margin-left: 0px;
+}
+
+.footer-column h3 {
+  font-size: 20px;
+  margin-bottom: 15px;
+  font-weight: bold;
+  color: #f26c1ecf;
+  font-size: 25px;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column li {
+  margin: 8px 0;
+  position: relative;
+  padding-left: 18px;
+  font-weight: bold;
+}
+
+.footer-column li::before {
+  content: '➜';
+  position: absolute;
+  left: 0;
+  color: #999;
+}
+
+.footer-column p {
+  margin: 10px 0;
+  line-height: 1.6;
+  font-weight: bold;
+}
+
+.footer-column i {
+  color: #9d7a70;
+  margin-right: 8px;
+}
+
+.social-icons a {
+  margin-right: 10px;
+  color: rgba(16, 6, 6, 0.86);
+  font-size: 20px;
+  background:white;
+  padding: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background 0.3s;
+}
+
+.social-icons a:hover {
+  background: #d2dd85;
+}
+
+.footer-bottom {
+  border-top: 1px solid #333;
+  margin-top: 30px;
+  padding-top: 15px;
+  text-align: center;
+  font-size: 14px;
+  color: #ccc;
+  background-color:grey;
+ 
+ 
+}
+
+.footer-bottom strong {
+  color: #915757;
+}
+
+.footer-bottom span {
+  color: rgba(255, 251, 0, 0.753);
+}
+
+.go-top {
+  display: inline-block;
+  margin-top: 10px;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  background-color: rgb(27, 91, 27);
+  height: 30px;
+  width: 90px;
+}
+.go-top p{
+  font-family: elephant;
+  margin-top:5px ;
+}
+
+.go-top:hover {
+  background-color: #a71d1d;
+}
+
+/* booking banner */
+
+.booking-banner {
+  background: url('https://media.istockphoto.com/id/1428412276/photo/a-male-chef-pouring-sauce-on-meal.jpg?s=612x612&w=0&k=20&c=UDZhmNU2tW_bu_2FeInP6zFq8jNFi3bMEMh3chniYTY=') center center/cover no-repeat;
+  color: white;
+  text-align: center;
+  padding: 100px 20px;
+  position: relative;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  display: inline-block;
+  padding: 40px;
+  border-radius: 10px;
+}
+
+.booking-banner h2 {
+  font-family: 'Pacifico', cursive;
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.booking-banner p {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.btn-book {
+  padding: 12px 24px;
+  border: 2px solid red;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+.btn-book:hover {
+  background-color: red;
+  color: white;
+}
+
+.footer {
+  background-color:rgba(128, 128, 128, 0.668);
+  color: #fff;
+  font-family: sans-serif;
+  background-image: url('pattern.png'); /* optional bg pattern */
+  background-size: contain;
+  
+  height: 418px;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  margin: auto;
+  gap: 10px;
+ 
+}
+
+.footer-column {
+  flex: 1 1 220px;
+  min-width: 250px;
+  margin: 50px;
+}
+
+.footer-logo {
+  height: 150px;
+  width:350px ;
+  background-color: rgba(244, 242, 239, 0.792) ;
+  margin-left: 0px;
+}
+
+.footer-column h3 {
+  font-size: 20px;
+  margin-bottom: 15px;
+  font-weight: bold;
+  color: #f26c1ecf;
+  font-size: 25px;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column li {
+  margin: 8px 0;
+  position: relative;
+  padding-left: 18px;
+  font-weight: bold;
+}
+
+.footer-column li::before {
+  content: '➜';
+  position: absolute;
+  left: 0;
+  color: #999;
+}
+
+.footer-column p {
+  margin: 10px 0;
+  line-height: 1.6;
+  font-weight: bold;
+}
+
+.footer-column i {
+  color: #9d7a70;
+  margin-right: 8px;
+}
+
+.social-icons a {
+  margin-right: 10px;
+  color: rgba(16, 6, 6, 0.86);
+  font-size: 20px;
+  background:white;
+  padding: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background 0.3s;
+}
+
+.social-icons a:hover {
+  background: #d2dd85;
+}
+
+.footer-bottom {
+  border-top: 1px solid #333;
+  margin-top: 30px;
+  padding-top: 15px;
+  text-align: center;
+  font-size: 14px;
+  color: #ccc;
+  background-color:grey;
+ 
+ 
+}
+
+.footer-bottom strong {
+  color: #915757;
+}
+
+.footer-bottom span {
+  color: rgba(255, 251, 0, 0.753);
+}
+
+.go-top {
+  display: inline-block;
+  margin-top: 10px;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  background-color: rgb(27, 91, 27);
+  height: 30px;
+  width: 90px;
+}
+.go-top p{
+  font-family: elephant;
+  margin-top:5px ;
+}
+
+.go-top:hover {
+  background-color: #a71d1d;
+}
+
+    </style>
+
+
+</head>
+<body>
+  <header class="header">
+    <div class="logo">
+       <div class="image"><img src="./img/Abstract_Illustrative_Chef_Restaurant_Logo-removebg-preview (1).png"></div> 
+      <div class=logo-cnt><h1>CHEF NOYON</h1>
+        <p>CATERING • SERVICE</p></div>
+    </div>
+    <nav class="nav">
+      <ul>
+        <li><a href="./index.html">HOME</a></li>
+        <li><a href="./about.html">ABOUT US</a></li>
+        <li><a href="./contact.html">CONTACT</a></li>
+        <li><a href="./faq.html">FAQ</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="banner">
+    <div class="banner-overlay">
+      <div class="banner-content">
+        <h1>"CONTACT WITH US TO JOIN"</h1>
+       
+      </div>
+    </div>
+  </section>
+
+  <!-- contact -->
+  <section class="contact-section">
+    <div class="contact-info">
+      <h2>Contact Us</h2>
+      <ul>
+        <li><i class="fa fa-phone"></i> Call: <a href="tel:8004881803">(800) 488-1803</a></li>
+        <li><i class="fa fa-comments"></i> Chat: <a href="#">Chat with us</a></li>
+        <li><i class="fa fa-mobile"></i> Text: <a href="tel:7813522651">(781) 352-2651</a></li>
+        <li><i class="fa fa-envelope"></i> Email: <a href="mailto:support@noyonscatering.com">support@noyonscatering.com</a></li>
+        <li><i class="fa fa-fax"></i> Fax: <a href="#">(866) 847-1510</a></li>
+      </ul>
+      <p><i class="fa fa-clock-o"></i> We're available 24/7</p>
+    </div>
+  
+    <div class="contact-form">
+      <h3>Or, fill out this form and we'll get back to you shortly.</h3>
+      <form>
+        <div class="form-group">
+          <input type="text" placeholder="Name" required>
+          <input type="email" placeholder="Email" required>
+        </div>
+        <textarea placeholder="Add a message" maxlength="1000" required></textarea>
+       
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+
+  <section class="booking-banner">
+    <div class="overlay">
+      <h2>Online Booking</h2>
+      <p>If you have a party ahead, feel free to book online for our tasty delicious food</p>
+      <a href="#" class="btn-book">BOOK NOW</a>
+    </div>
+  </section>
+  
+ 
+
+  
+  <!-- footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      
+      <!-- Logo & Description -->
+      <div class="footer-column">
+        <div class="footer-logo">
+         <div class="logo"><div class="image"><img src="./img/Abstract_Illustrative_Chef_Restaurant_Logo-removebg-preview (1).png"></div> 
+         <div class=logo-cnt><h1>CHEF NOYON</h1>
+           <p>CATERING • SERVICE</p></div></div> 
+       </div>
+        <p>Let noyon;s Catering transform your special occasion into a masterpiece with our professional touch.</p>
+        <div class="social-icons">
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-google-plus-g"></i></a>
+               
+              </div>
+        </div>
+      </div>
+  
+      <!-- Services -->
+      <div class="footer-column">
+        <h3>Our Services</h3>
+        <ul>
+          <li>Wedding Event</li>
+          <li>60th Wedding Event</li>
+          <li>70th Wedding Event</li>
+          <li>80th Wedding Event</li>
+          <li>Engagement</li>
+          <li>Seemantham</li>
+        </ul>
+      </div>
+  
+      <div class="footer-column">
+        <ul style="margin-top: 43px;">
+          <li>Annaprasana</li>
+          <li>Birthday Party</li>
+          <li>House Warming</li>
+          <li>Mehndi Function</li>
+          <li>Corporate Events</li>
+          <li>Retirement Function</li>
+        </ul>
+      </div>
+  
+      <!-- Contact Info -->
+      <div class="footer-column">
+        <h3>Contact Now</h3>
+        <p><i class="fas fa-map-marker-alt"></i>Silimpur,Bogura Sadar,Bogura</p>
+        <p><i class="fas fa-phone-alt"></i>01892357964
+        | 01306512256</p>
+        <p><i class="fas fa-envelope"></i> mdmaksan964@gmail.com</p>
+      </div>
+    </div>
+  
+    <!-- Bottom -->
+    <div class="footer-bottom">
+      <p>© 2025 <strong>Chef Noyon's Catering service</strong> All rights reserved | Designed By <span>Noyonhasan</span>.</p>
+      <a href="#" class="go-top"><p>Go to Top ↑</p></a>
+    </div>
+  </footer>
+  
+</body>
+</html>

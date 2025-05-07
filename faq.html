@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FAQ Page</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background:  rgba(250, 235, 215, 0.449);
+      color: #003920;
+    }
+
+    .faq-wrapper {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .faq-sidebar {
+      width: 250px;
+      background-color:#f26e22ba;
+      padding: 20px;
+      border-right: 1px solid #ddd;
+    }
+
+    .faq-sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .faq-sidebar li {
+      padding: 10px 15px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      font-weight: bold;
+      font-size: 20px;
+      font-family: cooper black;
+      color: rgb(80, 79, 79);
+    }
+
+    .faq-sidebar li:hover,
+    .faq-sidebar li.active {
+      background-color: #ddd;
+     
+    }
+
+    .faq-content {
+      flex: 1;
+      padding: 40px;
+     background-color: ;
+    }
+
+    .faq-section {
+      display: none;
+    }
+
+    .faq-section.active {
+      display: block;
+    }
+
+    .faq-section h2 {
+      margin-bottom: 20px;
+      font-size: 25px;
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 10px;
+      color: rgba(165, 42, 42, 0.678);
+    }
+
+    .faq-question {
+      padding: 15px 10px;
+      cursor: pointer;
+      border-bottom: 1px solid #ccc;
+      position: relative;
+      font-size: 20px;
+      
+    }
+
+    .faq-question::after {
+      content: "›";
+      position: absolute;
+      right: 15px;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-question.active::after {
+      transform: rotate(90deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+      padding: 0 10px;
+      background:rgba(165, 42, 42, 0.196);
+    }
+
+    .faq-question.active + .faq-answer {
+      max-height: 200px;
+      padding: 10px;
+    }
+
+
+
+    .header {
+    display: flex;
+    align-items: center;
+    height: 125px;
+    border-bottom: 1px solid #ddd;
+    justify-content: space-between;
+    background-color: rgba(250, 235, 215, 0.449);
+  }
+  
+  .logo {
+    text-align: center;
+    color: #f26c1e;
+    display: flex;
+    cursor: default;
+    opacity: 0;
+    animation:slideright 1s ease forwards;
+    
+  }
+  @keyframes slideright{
+    0%{
+        transform:translateX(-100px);
+        opacity: 0;
+    }
+    100%{
+        transform:translateX(0px);
+        opacity: 1;
+    }
+  }
+  .image{
+    width: 105px;
+
+
+  }
+  .logo img{
+    height:20vh;
+   
+  }
+  .logo-cnt{
+    line-height: 14px;
+    margin-top: 16px;
+  }
+  
+  
+  .logo h1 {
+    font-size: 2.rem;
+    letter-spacing: 0.1em;
+    font-weight: bold;
+    margin-top:30px ;
+    margin-left: 0px;
+    font-family: Forte;
+  }
+  
+  .logo p {
+    font-size: 0.9rem;
+    font-style: bold;
+    letter-spacing: 0.25em;
+    margin-top: 5px;
+    font-family: Bradley Hand ITC;
+    color: #a71d1d;
+    font-weight: bold;
+  }
+  
+  .nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-right: 30px;
+    gap: 30px;
+    
+  }
+  
+  .nav a {
+    text-decoration: none;
+    color: #333333bb;
+    font-weight:bold;
+    font-style: bold;
+    font-size: 0.95rem;
+    letter-spacing: 0.12em;
+    transition: .3s;
+    opacity: 0;
+    animation: slideUp 1s ease-out forwards;
+  }
+  @keyframes slideUp {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  .nav a:hover {
+    color: #f26c1e;
+    
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
+    .nav ul {
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+  .footer {
+  background-color:rgba(128, 128, 128, 0.668);
+  color: #fff;
+  font-family: sans-serif;
+  background-image: url('pattern.png'); /* optional bg pattern */
+  background-size: contain;
+  
+  height: 418px;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  margin: auto;
+  gap: 10px;
+ 
+}
+
+.footer-column {
+  flex: 1 1 220px;
+  min-width: 250px;
+  margin: 50px;
+}
+
+.footer-logo {
+  height: 150px;
+  width:350px ;
+  background-color: rgba(244, 242, 239, 0.792) ;
+  margin-left: 0px;
+}
+
+.footer-column h3 {
+  font-size: 20px;
+  margin-bottom: 15px;
+  font-weight: bold;
+  color: #f26c1ecf;
+  font-size: 25px;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column li {
+  margin: 8px 0;
+  position: relative;
+  padding-left: 18px;
+  font-weight: bold;
+}
+
+.footer-column li::before {
+  content: '➜';
+  position: absolute;
+  left: 0;
+  color: #999;
+}
+
+.footer-column p {
+  margin: 10px 0;
+  line-height: 1.6;
+  font-weight: bold;
+}
+
+.footer-column i {
+  color: #9d7a70;
+  margin-right: 8px;
+}
+
+.social-icons a {
+  margin-right: 10px;
+  color: rgba(16, 6, 6, 0.86);
+  font-size: 20px;
+  background:white;
+  padding: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background 0.3s;
+}
+
+.social-icons a:hover {
+  background: #d2dd85;
+}
+
+.footer-bottom {
+  border-top: 1px solid #333;
+  margin-top: 30px;
+  padding-top: 15px;
+  text-align: center;
+  font-size: 14px;
+  color: #ccc;
+  background-color:grey;
+ 
+ 
+}
+
+.footer-bottom strong {
+  color: #915757;
+}
+
+.footer-bottom span {
+  color: rgba(255, 251, 0, 0.753);
+}
+
+.go-top {
+  display: inline-block;
+  margin-top: 10px;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  background-color: rgb(27, 91, 27);
+  height: 30px;
+  width: 90px;
+}
+.go-top p{
+  font-family: elephant;
+  margin-top:5px ;
+}
+
+.go-top:hover {
+  background-color: #a71d1d;
+}
+  </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+           <div class="image"><img src="./img/Abstract_Illustrative_Chef_Restaurant_Logo-removebg-preview (1).png"></div> 
+          <div class=logo-cnt><h1>CHEF NOYON</h1>
+            <p>CATERING • SERVICE</p></div>
+        </div>
+        <nav class="nav">
+          <ul>
+            <li><a href="./index.html">HOME</a></li>
+            <li><a href="./about.html">ABOUT US</a></li>
+            
+    
+            <li><a href="./contact.html">CONTACT</a></li>
+            <li><a href="./faq.html">FAQ</a></li>
+          </ul>
+        </nav>
+      </header>
+
+<div class="faq-wrapper">
+  <div class="faq-sidebar">
+    <ul>
+      <li class="active" data-topic="membership">Membership</li>
+      <li data-topic="menu">Menu Items and Price</li>
+      <li data-topic="orders">Orders</li>
+      <li data-topic="delivery">Delivery</li>
+      <li data-topic="payment">Payment</li>
+      <li data-topic="thematic">Thematic Set Ups</li>
+      <li data-topic="buffet">Buffet Set Up</li>
+    </ul>
+  </div>
+
+  <div class="faq-content">
+
+    <!-- Membership -->
+    <div class="faq-section active" id="membership">
+      <h2>Membership</h2>
+
+      <div class="faq-question">How do I register for an account?</div>
+      <div class="faq-answer">You can register through our sign-up page using your email or mobile number.</div>
+
+      <div class="faq-question">How do I reset my password?</div>
+      <div class="faq-answer">Click “Forgot Password” on the login page and follow the instructions.</div>
+
+      <div class="faq-question">What can I redeem with my membership points?</div>
+      <div class="faq-answer">You can redeem discounts, free items, or exclusive services.</div>
+    </div>
+
+    <!-- Menu -->
+    <div class="faq-section" id="menu">
+      <h2>Menu Items and Price</h2>
+
+      <div class="faq-question">Is your food Halal certified?</div>
+      <div class="faq-answer">Yes, all our food is Halal certified by recognized authorities.</div>
+
+      <div class="faq-question">What is the difference between regular buffet and mini buffet?</div>
+      <div class="faq-answer">Mini buffets are for smaller groups with simpler setups, while regular buffets include more variety and full setup.</div>
+
+      <div class="faq-question">How much food should I order?</div>
+      <div class="faq-answer">We recommend ordering for 10% more guests than expected to avoid shortages.</div>
+    </div>
+
+    <!-- Add more sections below as needed -->
+
+    <div class="faq-section" id="orders">
+      <h2>Orders</h2>
+      <div class="faq-question">How do I place an order?</div>
+      <div class="faq-answer">You can order through our website or contact us via phone.</div>
+    </div>
+
+    <div class="faq-section" id="delivery">
+      <h2>Delivery</h2>
+      <div class="faq-question">Do you deliver on weekends?</div>
+      <div class="faq-answer">Yes, we deliver 7 days a week including holidays.</div>
+    </div>
+
+    <div class="faq-section" id="payment">
+      <h2>Payment</h2>
+      <div class="faq-question">What payment methods do you accept?</div>
+      <div class="faq-answer">We accept credit cards, PayNow, and bank transfers.</div>
+    </div>
+
+    <div class="faq-section" id="thematic">
+      <h2>Thematic Set Ups</h2>
+      <div class="faq-question">Can I request a custom theme?</div>
+      <div class="faq-answer">Yes, we offer custom themes for your event decor and setup.</div>
+    </div>
+
+    <div class="faq-section" id="buffet">
+      <h2>Buffet Set Up</h2>
+      <div class="faq-question">Do you provide tables and skirting?</div>
+      <div class="faq-answer">Yes, our buffet setup includes tables, skirting, and warmers.</div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // Sidebar tab switching
+  const topicButtons = document.querySelectorAll('.faq-sidebar li');
+  const faqSections = document.querySelectorAll('.faq-section');
+
+  topicButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      topicButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const selected = btn.getAttribute('data-topic');
+      faqSections.forEach(section => {
+        section.classList.remove('active');
+        if (section.id === selected) section.classList.add('active');
+      });
+    });
+  });
+
+  // Accordion toggle
+  const questions = document.querySelectorAll('.faq-question');
+  questions.forEach(q => {
+    q.addEventListener('click', () => {
+      q.classList.toggle('active');
+      const answer = q.nextElementSibling;
+      if (answer.style.maxHeight) {
+        answer.style.maxHeight = null;
+      } else {
+        answer.style.maxHeight = answer.scrollHeight + "px";
+      }
+    });
+  });
+</script>
+<footer class="footer">
+    <div class="footer-container">
+      
+      <!-- Logo & Description -->
+      <div class="footer-column">
+        <div class="footer-logo">
+         <div class="logo"><div class="image"><img src="./img/Abstract_Illustrative_Chef_Restaurant_Logo-removebg-preview (1).png"></div> 
+         <div class=logo-cnt><h1>CHEF NOYON</h1>
+           <p>CATERING • SERVICE</p></div></div> 
+       </div>
+        <p>Let noyon;s Catering transform your special occasion into a masterpiece with our professional touch.</p>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+          <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+  
+      <!-- Services -->
+      <div class="footer-column">
+        <h3>Our Services</h3>
+        <ul>
+          <li>Wedding Event</li>
+          <li>60th Wedding Event</li>
+          <li>70th Wedding Event</li>
+          <li>80th Wedding Event</li>
+          <li>Engagement</li>
+          <li>Seemantham</li>
+        </ul>
+      </div>
+  
+      <div class="footer-column">
+        <ul style="margin-top: 43px;">
+          <li>Annaprasana</li>
+          <li>Birthday Party</li>
+          <li>House Warming</li>
+          <li>Mehndi Function</li>
+          <li>Corporate Events</li>
+          <li>Retirement Function</li>
+        </ul>
+      </div>
+  
+      <!-- Contact Info -->
+      <div class="footer-column">
+        <h3>Contact Now</h3>
+        <p><i class="fas fa-map-marker-alt"></i>Silimpur,Bogura Sadar,Bogura</p>
+        <p><i class="fas fa-phone-alt"></i>01892357964
+        | 01306512256</p>
+        <p><i class="fas fa-envelope"></i> mdmaksan964@gmail.com</p>
+      </div>
+    </div>
+  
+    <!-- Bottom -->
+    <div class="footer-bottom">
+      <p>© 2025 <strong>Chef Noyon's Catering service</strong> All rights reserved | Designed By <span>Noyonhasan</span>.</p>
+      <a href="#" class="go-top"><p>Go to Top ↑</p></a>
+    </div>
+  </footer>
+  
+
+
+</body>
+</html>
