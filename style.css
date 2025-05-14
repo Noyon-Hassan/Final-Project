@@ -642,20 +642,20 @@ margin-top: 60px;
 
   margin: auto;
   gap: 10px;
-  height: 388px;
+  height: 308px;
  
 }
 
 .footer-column {
   flex: 1 1 220px;
-  min-width: 250px;
+  min-width: 200px;
   margin: 50px;
 }
 
-.footer-logo {
-  height: 150px;
-  width:350px ;
-  background-color: rgba(244, 242, 239, 0.792) ;
+.footer-column .logo {
+  height: 100px;
+  width:300px ;
+  background-color: rgba(244, 242, 239, 0.893) ;
   margin-left: 0px;
 }
 
